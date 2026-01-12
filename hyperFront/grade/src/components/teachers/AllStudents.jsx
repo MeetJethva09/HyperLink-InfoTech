@@ -18,7 +18,7 @@ useEffect(()=>{
         
             <div className="bg-white rounded-xl shadow p-6">
           <h2 className="text-lg font-semibold text-gray-800 mb-4">
-            Students Overview
+            Grades Overview
           </h2>
 
           <table className="w-full border-collapse">

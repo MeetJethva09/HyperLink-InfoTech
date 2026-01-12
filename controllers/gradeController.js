@@ -14,6 +14,9 @@ const assignGrades = async (req,res) =>{
             marks,
             grade : gradeAssign
         })
+
+        await userModel.updateOne({_id : req.params.id} , { $set : { gradeStatus : 'Assigned' } });
+        
         res.status(201).json({msg : "grade created" , data : response})
     }
     catch(err)

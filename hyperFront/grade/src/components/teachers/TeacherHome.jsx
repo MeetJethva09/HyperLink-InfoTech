@@ -6,6 +6,7 @@ export default function TeacherHome() {
     const navigate = useNavigate()
     const [studnets , setStudents] = useState([]);
     const [loginUser , setLoginUser] = useState({});
+    
 
     const logoutAction = async() =>{
         console.log("clicke")
@@ -15,11 +16,14 @@ export default function TeacherHome() {
     }
 
     const getDashboardData = async () =>{
-        const [studnetsRes,loginUserRes] = await Promise.all([ axios.get("/students") ,
-                                                               axios.get("/user/"+localStorage.getItem("id"))
+        const [studnetsRes,loginUserRes,gradeRes] = await Promise.all([ axios.get("/students") ,
+                                                               axios.get("/user/"+localStorage.getItem("id")),
+
          ]);
         setStudents(studnetsRes.data.data);
         setLoginUser(loginUserRes.data.data);
+       
+      
     }
 
 useEffect(()=>{
@@ -78,8 +82,8 @@ useEffect(()=>{
                 <th className="px-4 py-2 text-sm text-gray-600">Student ID</th>
                 <th className="px-4 py-2 text-sm text-gray-600">Name</th>
                 <th className="px-4 py-2 text-sm text-gray-600">Class</th>
-          
-                <th className="px-4 py-2 text-sm text-gray-600">Grades</th>
+                <th className="px-4 py-2 text-sm text-gray-600">Grade Status</th>
+                <th className="px-4 py-2 text-sm text-gray-600">Grade</th>
                
               </tr>
             </thead>
@@ -90,7 +94,7 @@ useEffect(()=>{
                             <td className="px-4 py-2">{student.studentId}</td>
                             <td className="px-4 py-2">{student.name}</td>
                             <td className="px-4 py-2">{student.studentClass}</td>
-                            
+                            <td>{student.gradeStatus}</td>
                             <Link to={`/add-grade/${student._id}`}><td><button className="bg-red-300 p-1 rounded w-20">Add</button></td></Link>
                            
                         </tr>

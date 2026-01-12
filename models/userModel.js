@@ -26,6 +26,11 @@ const userSchema = new mongoose.Schema({
     studentClass : {
         type : String,
         default : null
+    },
+    gradeStatus : {
+        type : String,
+        enum : ['Pending' , 'Assigned'],
+        default : 'Pending'
     }
 
 },{timestamps : true})

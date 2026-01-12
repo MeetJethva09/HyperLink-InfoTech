@@ -78,7 +78,7 @@ useEffect(()=>{
               </tr>
             </thead>
             <tbody>
-                { grade?.map((g)=>{
+                { grade.length === 0 ? <p className="text-red-700">No grade Assigned Yet..</p> :  grade?.map((g)=>{
                     return (
                         <tr className="border-t">
                             <td className="px-4 py-2">{g.subject}</td>
