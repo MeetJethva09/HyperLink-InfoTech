@@ -42,10 +42,10 @@ const loginUser = async (req,res) =>{
         if(isMatch === false) return res.status(404).json({msg : "Invalid Credentials"});
 
         const accessToken = generateToken(findUser);
-        res.cookie("accessToken" , accessToken)      //Store token in cookie.
+        res.cookie("accessToken" , accessToken , { httpOnly : true , secure : false })      //Store token in cookie.
 
         const refreshToken = generateRefreshToken(findUser);
-        res.cookie("refreshToken" , refreshToken);    //refresh token store in cookie
+        res.cookie("refreshToken" , refreshToken , { httpOnly : true , secure : false });    //refresh token store in cookie
 
         res.status(200).json({msg: "User found!!" , data : findUser})
     }
